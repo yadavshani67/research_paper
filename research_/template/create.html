@@ -1,0 +1,13 @@
+<html>
+<head>
+<title>
+WELCOME TO USER PROFILE</title>
+
+</head>
+<body><h1>CERATE YOUR PROFILE</h1>
+    <form method="POST">{% csrf_token %}
+        {{pro.as_p}}
+        <input type="submit"value="SUBMIT">
+    </form>
+</body>
+</html>
