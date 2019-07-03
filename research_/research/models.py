@@ -17,7 +17,7 @@ class paper(models.Model):
     Title=models.CharField(max_length=50,null=False)
     Research_field=models.CharField(max_length=50,null=False)
     paper_type=models.CharField(max_length=50,null=False)
-    attachment=models.FileField(null=False)
+    attachment=models.FileField(upload_to='documents/')
     Keywords=models.TextField()
     Author=models.TextField()
     Created_date=models.DateTimeField(auto_now =True)

@@ -1,0 +1,28 @@
+<html>
+<head>
+    CREATE PAPER
+<style> 
+body{color:'blue';
+    font-family:'serif';}
+a:link{
+    color:#00ffff;}
+a:visited{
+            color:#8b0000;}
+a:hover{
+        color:#ffe119;}
+a:active:{
+            color:#46f0f0;}
+</style>
+</head>
+<body>
+<h1>
+    CREATE YOUR PAPER
+</h1>
+<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+        {{pro.as_p}}
+        <input type="submit" value="SUBMIT">
+</form>
+<a href="http://127.0.0.1:8000/dashboard">SUBMIT</a>
+</body>
+
+</html>

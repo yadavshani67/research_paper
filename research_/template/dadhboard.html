@@ -1,0 +1,44 @@
+<html>
+<head>
+    DASHBOARD
+<style class="text/css"> 
+body {background-color:white;
+    font-family:serif;}
+a:link {
+    color:#00ffff;}
+a:visited {
+            color:#8b0000;}
+a:hover {
+        color:#ffe119;}
+a:active {
+            color:#46f0f0;}
+table {
+    border:5px dotted red;
+
+}
+</style>
+</head>
+<body>
+ 
+<table cellpadding="15px" cellspacing="0px">
+ <tr>
+ <th>Title   </th>
+ <th>Research_field    </th>
+ <th>paper_type   </th>
+ <th>attachment   </th>
+ </tr>
+
+{% for element in instan %}   
+    <tr>
+     <td>{{ element.Title }}</td>
+     <td>{{ element.Research_field }}</td>
+     <td>{{ element.paper_type }}</td>
+     <td>{{ element.attachment }}</td>
+    </tr>
+{% endfor %}
+
+</table>
+<button>
+<a href="http://127.0.0.1:8000/admin">STATUS</a></button>
+</body>
+</html>
