@@ -2,8 +2,13 @@
 <head>
     DASHBOARD
 <style class="text/css"> 
-body {background-color:white;
+body {background-image: url("static/images.jpeg");
+    background-size: cover;
+
     font-family:serif;}
+button{
+    background-color:blue;
+}
 a:link {
     color:#00ffff;}
 a:visited {
@@ -13,30 +18,46 @@ a:hover {
 a:active {
             color:#46f0f0;}
 table {
-    border:5px dotted red;
+    border:5px solid red;
 
 }
 </style>
 </head>
 <body>
- 
+ <h1>WELCOME TO USER DASHBOARD</h1>
+ {% if user.is_authenticated %}
+        <h2>Hii  {{ user.username }}!</h2>
+        <p><a href="{%url 'logout' %}">LOGOUT</a></p>
+    {% else %}
+        <p>You are Not loged In</p>
+        <a href="{% url 'login' %}">LOGIN</a>
+    {% endif %}
 <table cellpadding="15px" cellspacing="0px">
  <tr>
- <th>Title   </th>
- <th>Research_field    </th>
- <th>paper_type   </th>
- <th>attachment   </th>
- </tr>
-
+ <th>S.NO</th>
+ <th>USER</th>
+ <th>TITLE         </th>
+ <th>RESEARCH_FIELD</th>
+ <th>PAPER_TYPE   </th>
+ <th>ATTACHMENT   </th>
+ <th>Author       </th>
+ <th>CREATED_DATE  </th>
+ <th>UPDATED_DATE   </th>
+<ol type="1">
 {% for element in instan %}   
     <tr>
+    <td><li> </li></td>
+     <td>{{ element.User.id }}</td>
      <td>{{ element.Title }}</td>
      <td>{{ element.Research_field }}</td>
      <td>{{ element.paper_type }}</td>
      <td>{{ element.attachment }}</td>
+     <td>{{ element.Author }}</td>
+     <td>{{ element.Created_date }}</td>
+     <td>{{ element.updated_date }}</td>
     </tr>
 {% endfor %}
-
+</ol>
 </table>
 <button>
 <a href="http://127.0.0.1:8000/admin">STATUS</a></button>

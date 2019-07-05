@@ -26,9 +26,20 @@ SECRET_KEY = 'apoxskfk9wmvyc-6mk%ez)(gz!94zsu=%x&ymht&ugnenv1v5e'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+#AUTHENTICATION_BACKENDS = (
+    
+    # Needed to login by username in Django admin, regardless of `allauth`
+    #'django.contrib.auth.backends.ModelBackend',
 
+    # `allauth` specific authentication methods, such as login by e-mail
+    #'allauth.account.auth_backends.AuthenticationBackend',
+    
+
+#GOOGLE_OAUTH2_CLIENT_SECRETS_JSON = 'client_secrets.json'
 
 # Application definition
+LOGIN_REDIRECT_URL = 'dashboard/'
+LOGOUT_REDIRECT_URL= 'dashboard/'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -38,7 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'research',
-]
+
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -67,6 +79,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'research_paper.wsgi.application'
 
@@ -119,3 +132,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS=[os.path.join(BASE_DIR, "static")]
+STATIC_ROOT = os.path.join(BASE_DIR, "static_cdn")

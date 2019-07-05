@@ -1,4 +1,7 @@
-from django.db import models
+from django.contrib import admin 
+from django.contrib.auth.models import User 
+from django.db import models 
+
 
 class profile(models.Model):
     Name=models.CharField(max_length=50,null=False)
@@ -23,11 +26,13 @@ class paper(models.Model):
     Created_date=models.DateTimeField(auto_now =True)
     updated_date=models.DateTimeField(auto_now_add =True)
     status=models.CharField(max_length=50)
+    User=models.ForeignKey(profile,default=1, on_delete=models.CASCADE)
 
     def _str_(self):
         return self.Title
 
 class payment(models.Model):
+    #paper_no=models.ForeignKey(paper,on_delete=models.CASCADE)
     Transaction_id=models.IntegerField()
     Transaction_status=models.CharField(max_length=50)
 
@@ -36,6 +41,8 @@ class payment(models.Model):
 
 
 class Notification(models.Model):
+    #paper_no=models.ForeignKey(paper,on_delete=models.CASCADE)
+    #status=models.CharField(max_length=50)
     message=models.TextField()
 
     def _str_(self):
