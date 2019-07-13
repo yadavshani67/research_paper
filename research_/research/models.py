@@ -1,9 +1,12 @@
 from django.contrib import admin 
 from django.contrib.auth.models import User 
 from django.db import models 
+from django.conf import settings
 
+User=settings.AUTH_USER_MODEL
 
 class profile(models.Model):
+    user=models.CharField(max_length=50,null=True)
     Name=models.CharField(max_length=50,null=False)
     Email=models.EmailField(null=False)
     #Username=models.CharField(max_length=50,null=False)
@@ -12,6 +15,7 @@ class profile(models.Model):
     Organisation=models.CharField(max_length=50,null=False)
     Address=models.TextField()
     Bio=models.TextField()
+    #user=models.OneToOneField(User,null=True, on_delete=models.CASCADE) 
 
     def _str_(self):
         return self.Name
@@ -26,10 +30,12 @@ class paper(models.Model):
     Created_date=models.DateTimeField(auto_now =True)
     updated_date=models.DateTimeField(auto_now_add =True)
     status=models.CharField(max_length=50)
-    User=models.ForeignKey(profile,default=1, on_delete=models.CASCADE)
-
+    profil=models.ForeignKey(profile,null=True, on_delete=models.CASCADE)
+    user=models.CharField(max_length=50,null=True)
+    #user=models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     def _str_(self):
         return self.Title
+
 
 class payment(models.Model):
     #paper_no=models.ForeignKey(paper,on_delete=models.CASCADE)

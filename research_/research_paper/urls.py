@@ -15,14 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from research.views import create,create_paper,dashboard
+from research.views import create,create_paper,dashboard,update,delete,update_profile
 from django.views.generic.base import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('create/',create),
-    path('dashboard/',dashboard),
-    path('paper/',create_paper),
+    path('create/',create,name="create"),
+    path('dashboard/',dashboard,name="dashboard"),
+    path('paper/',create_paper,name="paper"),
+    path('accounts/',include('accounts.urls')),
+    path('update_profile/<int:pk>/',update_profile,name="update_profile"),
     path('accounts/',include('django.contrib.auth.urls')),
-    path('dashboard/',TemplateView.as_view(template_name='dadhboard.html'),name='dashboard/')
+    path('dashboard/',TemplateView.as_view(template_name='dadhboard.html'),name='dashboard/'),
+    path('edit/<int:pk>/',update,name="update"),
+    path('delete/<int:pk>/',delete,name="delete")
+  
    # path('^accounts/',include('allauth.urls')),
 ]

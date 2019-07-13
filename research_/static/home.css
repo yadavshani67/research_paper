@@ -1,0 +1,19 @@
+body {/*background-image: url("/images.jpeg");*/
+    background-size: cover;
+
+    font-family:serif;}
+button{
+    background-color:blue;
+}
+a:link {
+    color:#00ffff;}
+a:visited {
+            color:#8b0000;}
+a:hover {
+        color:#ffe119;}
+a:active {
+            color:#46f0f0;}
+table {
+    border:5px solid red;
+
+}

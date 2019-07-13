@@ -1,29 +1,11 @@
 <html>
 <head>
     DASHBOARD
-<style class="text/css"> 
-body {background-image: url("static/images.jpeg");
-    background-size: cover;
+<link rel="stylesheet" type="text/css" href="/static/home.css">
 
-    font-family:serif;}
-button{
-    background-color:blue;
-}
-a:link {
-    color:#00ffff;}
-a:visited {
-            color:#8b0000;}
-a:hover {
-        color:#ffe119;}
-a:active {
-            color:#46f0f0;}
-table {
-    border:5px solid red;
 
-}
-</style>
 </head>
-<body>
+<body background="/static/images.jpeg">
  <h1>WELCOME TO USER DASHBOARD</h1>
  {% if user.is_authenticated %}
         <h2>Hii  {{ user.username }}!</h2>
@@ -32,6 +14,10 @@ table {
         <p>You are Not loged In</p>
         <a href="{% url 'login' %}">LOGIN</a>
     {% endif %}
+{% for element in fix %}
+        <h3><p><a href="{% url 'update_profile' element.pk %}">UPDATE_PROFILE</a></p></h3>
+{% endfor %}
+
 <table cellpadding="15px" cellspacing="0px">
  <tr>
  <th>S.NO</th>
@@ -43,23 +29,39 @@ table {
  <th>Author       </th>
  <th>CREATED_DATE  </th>
  <th>UPDATED_DATE   </th>
+ <th>check status </th>
+ <th>Edit paper</th>
+ <th>Delete</th>
 <ol type="1">
-{% for element in instan %}   
-    <tr>
-    <td><li> </li></td>
-     <td>{{ element.User.id }}</td>
-     <td>{{ element.Title }}</td>
-     <td>{{ element.Research_field }}</td>
-     <td>{{ element.paper_type }}</td>
-     <td>{{ element.attachment }}</td>
-     <td>{{ element.Author }}</td>
-     <td>{{ element.Created_date }}</td>
-     <td>{{ element.updated_date }}</td>
-    </tr>
+{% for element in instan %}
+{% if request.user.is_authenticated %}
+    {% ifequal request.user.username element.user %}   
+        <tr>
+        <td><li> </li></td>
+        <td> {{ element.user }}</td>
+        <td>{{ element.Title }}</td>
+        <td>{{ element.Research_field }}</td>
+        <td>{{ element.paper_type }}</td>
+        <td>{{ element.attachment }}</td>
+        <td>{{ element.Author }}</td>
+        <td>{{ element.Created_date }}</td>
+        <td>{{ element.updated_date }}</td>
+        <td><button><a href="http://127.0.0.1:8000/status/">status</a></td></button>
+        <td>
+        <button><a href="{% url 'update' element.pk %}"><h3>Edit</h3></a></button>
+        </td>
+        <td>
+        <button><a href="{% url 'delete' element.pk %}"><h3>Delete</h3></a></button>
+        </td>
+        </tr>
+    {% endifequal %}
+    {% endif %}
+
+
 {% endfor %}
 </ol>
 </table>
 <button>
-<a href="http://127.0.0.1:8000/admin">STATUS</a></button>
+<a href="http://127.0.0.1:8000/admin/">STATUS</a></button>
 </body>
 </html>
