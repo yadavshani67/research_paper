@@ -26,6 +26,8 @@ SECRET_KEY = 'apoxskfk9wmvyc-6mk%ez)(gz!94zsu=%x&ymht&ugnenv1v5e'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+EMAIL_BACKEND="django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH=os.path.join(BASE_DIR, "sent_emails")
 #AUTHENTICATION_BACKENDS = (
     
     # Needed to login by username in Django admin, regardless of `allauth`
